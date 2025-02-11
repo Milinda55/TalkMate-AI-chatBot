@@ -9,4 +9,11 @@ function sendMessage() {
     userMessage.textContent = userInput;
     chatBox.appendChild(userMessage);
 
+    let botMessage = document.createElement("p");
+    botMessage.className = "bot-message";
+    botMessage.textContent = "I'm still learning! 😊";
+    chatBox.appendChild(botMessage);
+
+    document.getElementById("user-input").value = "";
+
 }
