@@ -4,4 +4,9 @@ function sendMessage() {
 
     if (userInput.trim() === "") return;
 
+    let userMessage = document.createElement("p");
+    userMessage.className = "user-message";
+    userMessage.textContent = userInput;
+    chatBox.appendChild(userMessage);
+
 }
