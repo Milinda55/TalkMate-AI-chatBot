@@ -45,4 +45,4 @@ This project is licensed under the MIT License - see the [MIT LICENSE](LICENSE.t
 ## Acknowledgments
 
 - Inspiration from open-source AI chatbot frameworks.
-- Thanks to the community for contributing various tools and libraries that made this project possible.
+
