@@ -27,13 +27,41 @@ body {
     overflow-y: auto;
     padding: 5px;
     border-bottom: 1px solid #ddd;
-
 }
+
+.user-message {
+    background-color: #06D6A0; /* Green */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px;
+    text-align: right;
+    float: right;
+    clear: both;
+    max-width: 75%;
+    position: relative;
+}
+
+
+.bot-message {
+    background-color: #FFD166; /* Yellow */
+    color: black;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 5px;
+    text-align: left;
+    float: left;
+    clear: both;
+    max-width: 75%;
+    position: relative;
+}
+
 
 input {
     width: 100%;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
 button {
@@ -44,3 +72,4 @@ button {
     cursor: pointer;
     border-radius: 5px;
 }
+
