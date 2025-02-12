@@ -32,6 +32,7 @@ body {
 .user-message {
     background-color: #06D6A0; /* Green */
     color: white;
+    top: 20px;
     padding: 8px 12px;
     border-radius: 10px;
     margin: 5px;
@@ -42,10 +43,21 @@ body {
     position: relative;
 }
 
+.user-message::before {
+    content: "You";
+    font-size: 12px;
+    color: #333;
+    position: absolute;
+    top: -18px;
+    right: 5px;
+    font-weight: bold;
+}
+
 
 .bot-message {
     background-color: #FFD166; /* Yellow */
     color: black;
+    top: 20px;
     padding: 8px 12px;
     border-radius: 10px;
     margin: 5px;
@@ -54,6 +66,16 @@ body {
     clear: both;
     max-width: 75%;
     position: relative;
+}
+
+.bot-message::before {
+    content: "TalkMate";
+    font-size: 12px;
+    color: #333333;
+    position: absolute;
+    top: -18px;
+    left: 5px;
+    font-weight: bold;
 }
 
 
