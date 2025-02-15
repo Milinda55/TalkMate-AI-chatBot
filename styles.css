@@ -80,7 +80,7 @@ body {
 
 
 input {
-    width: 100%;
+    width: 95%;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -93,5 +93,49 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: white;
+    }
+
+    .chat-container {
+        background: #1E1E1E;
+        box-shadow: 0 0 10px #444;
+    }
+
+    .chat-box {
+        border-bottom: 1px solid #444;
+    }
+
+    .user-message {
+        background-color: #008C76;
+    }
+
+    .user-message::before {
+        color: #bbb;
+    }
+
+    .bot-message {
+        background-color: #FFA500;
+        color: black;
+    }
+
+    .bot-message::before {
+        color: #bbb;
+    }
+
+    input {
+        background: #222;
+        color: white;
+        border: 1px solid #444;
+    }
+
+    button {
+        background: #008C76;
+    }
 }
 
