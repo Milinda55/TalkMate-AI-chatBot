@@ -30,6 +30,13 @@ function appendMessage(role, message) {
     let chatBox = document.getElementById("chat-box");
     let messageContainer = document.createElement("div");
     messageContainer.className = `message-container ${role}-message-container`;
+
+    // Add profile picture
+    let profilePic = document.createElement("img");
+    profilePic.className = `profile-pic ${role}-pic`;
+    profilePic.src = role === "user" ? "" : "img/bot-image.jpg";
+    profilePic.alt = role === "user" ? "" : "Bot";
+    messageContainer.appendChild(profilePic);
 }
 
 
