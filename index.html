@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1 id="header-text">TalkMate ChatBot</h1>
+<h1 id="header-text">TalkMate AI ChatBot</h1>
 <div class="chat-container">
     <div class="chat-box" id="chat-box">
-        <p class="bot-message">Hello! How can I help you?</p>
+        <div class="message-container bot-message-container">
+            <img src="img/bot-image.jpg" alt="bot" class="profile-pic bot-pic">
+            <p class="bot-message">Hello! How can I help you?</p>
+        </div>
+        <div class="message-container user-message-container">
+        </div>
     </div>
     <input class="input-container" type="text" id="user-input" placeholder="Type a message...">
     <button class="input-container" onclick="sendMessage()">Send</button>
