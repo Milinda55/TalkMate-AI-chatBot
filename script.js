@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("user-input").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+});
+
 function sendMessage() {
     let userInput = document.getElementById("user-input").value;
     let chatBox = document.getElementById("chat-box");
@@ -17,3 +25,5 @@ function sendMessage() {
     document.getElementById("user-input").value = "";
 
 }
+
+
