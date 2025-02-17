@@ -61,8 +61,8 @@ function appendMessage(role, message) {
     // Add profile picture
     let profilePic = document.createElement("img");
     profilePic.className = `profile-pic ${role}-pic`;
-    profilePic.src = role === "user" ? "" : "img/bot-image.jpg";
-    profilePic.alt = role === "user" ? "" : "Bot";
+    profilePic.src = role === "user" ? "img/milley.png" : "img/bot-image.jpg";
+    profilePic.alt = role === "user" ? "user" : "Bot";
     messageContainer.appendChild(profilePic);
 
     // Add message
