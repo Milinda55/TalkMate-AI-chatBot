@@ -12,6 +12,9 @@ async function sendMessage() {
 
     appendMessage("user", userInput);
     document.getElementById("user-input").value = "";
+
+    let botReply = await getAIResponse(userInput);
+    appendMessage("bot", botReply);
 }
 
 async function getAIResponse(userMessage) {
