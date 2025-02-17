@@ -19,7 +19,7 @@ async function sendMessage() {
 
 async function getAIResponse(userMessage) {
     const API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill";
-    const API_KEY = "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";
+    const API_KEY = process.env.HUGGINGFACE_API_KEY;
 
     try {
         const response = await fetch(API_URL, {
