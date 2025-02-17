@@ -6,22 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function sendMessage() {
+async function sendMessage() {
     let userInput = document.getElementById("user-input").value;
-    let chatBox = document.getElementById("chat-box");
+    if (!userInput) return; //
 
-    if (userInput.trim() === "") return;
-
-    let userMessage = document.createElement("p");
-    userMessage.className = "user-message";
-    userMessage.textContent = userInput;
-    chatBox.appendChild(userMessage);
-
-    let botMessage = document.createElement("p");
-    botMessage.className = "bot-message";
-    botMessage.textContent = "I'm still learning! 😊";
-    chatBox.appendChild(botMessage);
-
+    appendMessage("user", userInput);
     document.getElementById("user-input").value = "";
 
 }
