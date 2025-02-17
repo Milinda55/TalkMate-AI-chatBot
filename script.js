@@ -26,4 +26,10 @@ function sendMessage() {
 
 }
 
+function appendMessage(role, message) {
+    let chatBox = document.getElementById("chat-box");
+    let messageContainer = document.createElement("div");
+    messageContainer.className = `message-container ${role}-message-container`;
+}
+
 
