@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f8FFE5;
+    /*background-color: rgba(255, 255, 191, 0.62);*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,6 +13,7 @@ body {
     margin-top: 20px;
     text-align: center;
     color: #06D6A0;
+    /*color: #C72C41;*/
 }
 
 .chat-container {
@@ -22,20 +24,47 @@ body {
     box-shadow: 0px 0px 10px gray;
 }
 
+.message-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+
+
+}
+.bot-message-container {
+    justify-content: flex-start;
+}
+
+.user-message-container {
+    justify-content: flex-end;
+}
+
 .chat-box {
     height: 200px;
     overflow-y: auto;
     padding: 5px;
     border-bottom: 1px solid #ddd;
+    /*background-color: rgba(232, 198, 209, 0.58);*/
 }
 
 .user-message {
     background-color: #06D6A0; /* Green */
+    /*background-color: rgba(49, 99, 191, 0.6);*/
+
     color: white;
-    top: 20px;
+    /*top: 40px;*/
+    margin: 20px 5px 10px 5px; /* Increased margin for spacing */
     padding: 8px 12px;
     border-radius: 10px;
-    margin: 5px;
+    /*margin: 5px;*/
     text-align: right;
     float: right;
     clear: both;
@@ -44,11 +73,11 @@ body {
 }
 
 .user-message::before {
-    content: "You";
+    /*content: "";*/
     font-size: 12px;
     color: #333;
     position: absolute;
-    top: -18px;
+    top: -20px;
     right: 5px;
     font-weight: bold;
 }
@@ -56,11 +85,13 @@ body {
 
 .bot-message {
     background-color: #FFD166; /* Yellow */
+    /*background-color: #C72C41;*/
     color: black;
-    top: 20px;
+    /*top: 50px;*/
+    margin: 20px 5px 10px 5px; /* Increased margin for spacing */
     padding: 8px 12px;
     border-radius: 10px;
-    margin: 5px;
+    /*margin: 5px;*/
     text-align: left;
     float: left;
     clear: both;
@@ -69,29 +100,85 @@ body {
 }
 
 .bot-message::before {
-    content: "TalkMate";
+    /*content: "Pamuu";*/
     font-size: 12px;
     color: #333333;
     position: absolute;
-    top: -18px;
+    top: -20px;
     left: 5px;
     font-weight: bold;
 }
 
 
 input {
-    width: 100%;
+    width: 95%;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
 }
 
 button {
-    width: 18%;
+    width: 20%;
     background: #06D6A0;
+    /*background: #C72C41;*/
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    justify-content: center;
+    /*padding: 10px;*/
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: white;
+    }
+
+    .chat-container {
+        background: #1E1E1E;
+        box-shadow: 0 0 10px #444;
+    }
+
+    .chat-box {
+        border-bottom: 1px solid #444;
+    }
+
+    .user-message {
+        background-color: #008C76;
+    }
+
+    .user-message::before {
+        color: #bbb;
+    }
+
+    .bot-message {
+        background-color: #FFA500;
+        color: black;
+    }
+
+    .bot-message::before {
+        color: #bbb;
+    }
+
+    input {
+        background: #222;
+        color: white;
+        border: 1px solid #444;
+    }
+
+    button {
+        background: #008C76;
+    }
 }
 
