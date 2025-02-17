@@ -12,7 +12,42 @@ async function sendMessage() {
 
     appendMessage("user", userInput);
     document.getElementById("user-input").value = "";
+}
 
+async function getAIResponse(userMessage) {
+    const API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill";
+    const API_KEY = "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";
+
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ inputs: userMessage })
+        });
+
+        const data = await response.json();
+        console.log("API Response:", data);
+
+        if (Array.isArray(data) && data.length > 0) {
+            const generatedText = data[0].generated_text;
+            if (generatedText) {
+                return generatedText;
+            }
+        }
+
+        if (data.error) {
+            console.error("API Error:", data.error);
+            return "Sorry, I couldn't generate a response.";
+        }
+
+        return "Sorry, I couldn't generate a response.";
+    } catch (error) {
+        console.error("Error fetching AI response:", error);
+        return "Oops! Something went wrong. Please try again.";
+    }
 }
 
 function appendMessage(role, message) {
