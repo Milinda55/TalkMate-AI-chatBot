@@ -1,3 +1,5 @@
+import './firebase-config.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("user-input").addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
