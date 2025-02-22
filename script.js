@@ -1,3 +1,5 @@
+import './firebase-config.js';
+
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("user-input").addEventListener("keypress", function (event) {
@@ -20,7 +22,7 @@ async function sendMessage() {
 
 async function getAIResponse(userMessage) {
     const API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill";
-    const API_KEY = "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";
+    const API_KEY = "";
 
     try {
         const response = await fetch(API_URL, {
