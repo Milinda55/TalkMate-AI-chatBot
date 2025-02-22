@@ -11,7 +11,7 @@ body {
     min-height: 100vh;
     padding: 0 10px;
     display: flex;
-    background: #00E9A4;
+    background: #09171C;
     justify-content: center;
     align-items: center;
 }
@@ -100,7 +100,46 @@ form .input_box input {
     outline: none;
     background: #F8F8FB;
     font-size: 17px;
-    padding: 0px 20px;
+    padding: 0 20px;
     margin-bottom: 25px;
     transition: 0.2s ease;
+}
+
+form .input_box input:focus {
+    border-color: #626cd6;
+}
+form .input_box .password_title {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+form .input_box {
+    position: relative;
+}
+a {
+    text-decoration: none;
+    color: #626cd6;
+    font-weight: 500;
+}
+a:hover {
+    text-decoration: underline;
+}
+/* Login button styling */
+form button {
+    width: 100%;
+    height: 56px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: #00E9A4;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 28px;
+    transition: 0.3s ease;
+}
+form button:hover {
+    background: #4954d0;
 }
