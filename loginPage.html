@@ -7,76 +7,53 @@
     <link rel="stylesheet" href="./loginStyles.css">
 </head>
 <body>
-<section class="section">
-    <div class="container">
-        <div class="left">
-            <div class="left-blur"></div>
-            <div class="z-positive">
-                <a href="#" class="logo-link w-inline-block"></a>
-                <h1>Step into the Future – Your AI Companion is
-                    Here!</h1>
+<div class="login_form">
+    <!-- Login form container -->
+    <form action="#">
+        <h3>Log in with</h3>
+        <div class="login_option">
+
+            <!-- Google button -->
+            <div class="option">
+                <a href="#">
+                    <img src="" alt="Google" />
+                    <span>Google</span>
+                </a>
             </div>
-        </div>
-        <div class="right">
-            <div class="right-wrap">
-                <div data-ms-form="signup" class="form-block w-form">
-                    <h2 class="mb-30">Sign up</h2>
-                    <form id="email-form" name="email-form" data-name=
-                            "Email Form" method="get" class="form" data-wf-page-id=
-                                  "67b6a821aa301777c3e998d5" data-wf-element-id=
-                                  "e157851a-5777-2ea0-896e-b0173d1f6693"
-                          data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e">
-                        <div class="form-field">
-                            <label for="email" class="label">Email
-                                address</label><input class="field w-input"
-                                                      maxlength="256" name="email" data-name="email"
-                                                      placeholder="Enter email" type="email" id="email"
-                                                      data-ms-member="email">
-                        </div>
-                        <div class="form-field">
-                            <label for="Password" class="label">Set
-                                password</label>
-                            <div class="field-wrap"><input class=
-                                                                   "field password w-input" maxlength="256" name=
-                                                                   "Password" data-name="Password" placeholder=
-                                                                   "Enter password" type="password" id="password"
-                                                           data-ms-member="password"><img src=
-                                                                                                  "https://cdn.prod.website-files.com/67b6a820aa301777c3e9988c/67b6a821aa301777c3e998dd_eye.svg"
-                                                                                          loading="lazy" data-w-id=
-                                                                                                  "a9272237-7e19-a365-72eb-10c9197bb5be" alt="" id=
-                                                                                                  "eye-open" class="eye-icon"><img src=
-                                                                                                                                           "https://cdn.prod.website-files.com/67b6a820aa301777c3e9988c/67b6a821aa301777c3e998dc_eye%20closed.svg"
-                                                                                                                                   loading="lazy" data-w-id=
-                                                                                                                                           "4174893b-87a0-cbe1-4392-8b22ea8df3c1" alt="" id=
-                                                                                                                                           "eye-close" class="eye-icon closed"></div>
-                        </div><input type="submit" data-wait="Please wait..."
-                                     class="button w-button" value=
-                                             "Sign up"><a data-ms-auth-provider="google" href="#"
-                                                          class="button-google w-inline-block"><img src=
-                                                                                                            "https://cdn.prod.website-files.com/67b6a820aa301777c3e9988c/67b6a821aa301777c3e998df_google.svg"
-                                                                                                    loading="lazy" alt="">
-                        <p>Sign up with Google</p></a>
-                        <p class="label-p mb-25">By signing up, you agree to
-                            our <a href="#" class="link">Terms of service</a></p>
-                        <p class="label-p">Already have an account? <a href=
-                                                                               "#" class="link">Log in</a></p>
-                    </form>
-                    <div class="w-form-done">
-                        <div>
-                            Thank you! Your submission has been received!
-                        </div>
-                    </div>
-                    <div class="w-form-fail">
-                        <div>
-                            Oops! Something went wrong while submitting the
-                            form.
-                        </div>
-                    </div>
-                </div>
+
+            <!-- Apple button -->
+            <div class="option">
+                <a href="#">
+                    <img src="" alt="Apple" />
+                    <span>Apple</span>
+                </a>
             </div>
+
         </div>
-    </div>
-</section>
+        <!-- Login option separator -->
+        <p class="separator">
+            <span>or</span>
+        </p>
+
+        <!-- Email input box -->
+        <div class="input_box">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter email address" required />
+        </div>
+
+        <!-- Password input box -->
+        <div class="input_box">
+            <div class="password_title">
+                <label for="password">Password</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <!-- Login button -->
+        <button type="submit">Log In</button>
+        <p class="sign_up">Don't have an account? <a href="#">Sign up</a></p>
+    </form>
+</div>
 
 </body>
 </html>
