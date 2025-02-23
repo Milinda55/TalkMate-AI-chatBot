@@ -1,4 +1,6 @@
-import './firebase-config.js';
+// import './firebase-config.js';
+
+import firebase from "firebase/compat";
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -22,7 +24,7 @@ async function sendMessage() {
 
 async function getAIResponse(userMessage) {
     const API_URL = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill";
-    const API_KEY = "";
+    const API_KEY = "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";
 
     try {
         const response = await fetch(API_URL, {
@@ -77,5 +79,12 @@ function appendMessage(role, message) {
     chatBox.appendChild(messageContainer);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+// Redirect to login if not authenticated
+firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+        window.location.href = "index.html"; // Redirect to login if not signed in
+    }
+});
 
 

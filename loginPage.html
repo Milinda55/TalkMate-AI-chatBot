@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./loginStyles.css">
+    <!-- Add this to your <head> tag -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script defer src="./firebase-config.js"></script>
+</head>
+
 </head>
 <body>
 <div class="login_form">
@@ -15,7 +22,7 @@
 
             <!-- Google button -->
             <div class="option">
-                <a href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=811557522718-deu4m38cj0g83jug78b8chnj29olnq4g.apps.googleusercontent.com&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fclient.memberstack.com%2Fauth%2Fcallback&code_challenge=5y8RNSXQ6XE8wswZTSQEIJg6WVkyhkQVMqi6KPwHGxM&code_challenge_method=S256&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm92aWRlciI6Imdvb2dsZSIsImFwcElkIjoiYXBwX2NsYTB1OW85ZjAwZHIwdGpuZnA4c2VqcjAiLCJjdXN0b21GaWVsZHMiOnt9LCJwbGFucyI6W10sIm1vZGUiOiJTQU5EQk9YIiwiYWN0aW9uIjoiU0lHTlVQIiwiYWxsb3dTaWdudXAiOmZhbHNlLCJpYXQiOjE3NDAyMjA4MDd9.VWa_H2R989bthi8ctlFDYvlZTBlURNB8ZmCChAwpbrg&service=lso&o2v=2&ddm=1&flowName=GeneralOAuthFlow">
+                <a id="google-login" href="https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=811557522718-deu4m38cj0g83jug78b8chnj29olnq4g.apps.googleusercontent.com&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fclient.memberstack.com%2Fauth%2Fcallback&code_challenge=5y8RNSXQ6XE8wswZTSQEIJg6WVkyhkQVMqi6KPwHGxM&code_challenge_method=S256&state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm92aWRlciI6Imdvb2dsZSIsImFwcElkIjoiYXBwX2NsYTB1OW85ZjAwZHIwdGpuZnA4c2VqcjAiLCJjdXN0b21GaWVsZHMiOnt9LCJwbGFucyI6W10sIm1vZGUiOiJTQU5EQk9YIiwiYWN0aW9uIjoiU0lHTlVQIiwiYWxsb3dTaWdudXAiOmZhbHNlLCJpYXQiOjE3NDAyMjA4MDd9.VWa_H2R989bthi8ctlFDYvlZTBlURNB8ZmCChAwpbrg&service=lso&o2v=2&ddm=1&flowName=GeneralOAuthFlow">
                     <img src="img/G-google.png" alt="Google" style="max-width: 25px" />
                     <span>Google</span>
                 </a>
@@ -23,7 +30,7 @@
 
             <!-- Apple button -->
             <div class="option">
-                <a href="https://appleid.apple.com/auth/authorize?...&redirect_uri=https%3A%2F%2Fclient.memberstack.com%2Fauth%2Fcallback">
+                <a id="apple-login" href="https://appleid.apple.com/auth/authorize?...&redirect_uri=https%3A%2F%2Fclient.memberstack.com%2Fauth%2Fcallback">
                     <img src="img/apple-logo.png" alt="Apple" />
                     <span>Apple</span>
                 </a>
