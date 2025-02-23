@@ -22,3 +22,23 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+// Google Sign-In
+document.getElementById("google-login").addEventListener("click", () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            console.log("User signed in:", result.user);
+            window.location.href = "index.html";  // Redirect to main app
+        })
+        .catch((error) => {
+            console.error("Error signing in:", error);
+        });
+});
+
+// Check if user is already signed in
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        window.location.href = "index.html";  // Redirect if logged in
+    }
+});
+
