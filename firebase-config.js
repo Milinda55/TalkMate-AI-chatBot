@@ -2,6 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,23 +22,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 // Google Sign-In
-document.getElementById("google-login").addEventListener("click", () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-        .then((result) => {
-            console.log("User signed in:", result.user);
-            window.location.href = "index.html";  // Redirect to main app
-        })
-        .catch((error) => {
-            console.error("Error signing in:", error);
+document.addEventListener("DOMContentLoaded", () => {
+    const googleLoginBtn = document.getElementById("google-login");
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener("click", async () => {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                console.log("User signed in:", result.user);
+                window.location.href = "index.html";  // Redirect to main app
+            } catch (error) {
+                console.error("Error signing in:", error);
+            }
         });
+    }
 });
 
 // Check if user is already signed in
-auth.onAuthStateChanged((user) => {
+onAuthStateChanged(auth, (user) => {
     if (user) {
+        console.log("User is already signed in:", user);
         window.location.href = "index.html";  // Redirect if logged in
     }
 });

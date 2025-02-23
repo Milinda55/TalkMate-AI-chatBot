@@ -1,5 +1,7 @@
 // import './firebase-config.js';
 
+import firebase from "firebase/compat";
+
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("user-input").addEventListener("keypress", function (event) {
@@ -77,5 +79,12 @@ function appendMessage(role, message) {
     chatBox.appendChild(messageContainer);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+// Redirect to login if not authenticated
+firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+        window.location.href = "index.html"; // Redirect to login if not signed in
+    }
+});
 
 
