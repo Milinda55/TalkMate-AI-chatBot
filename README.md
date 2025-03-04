@@ -23,11 +23,11 @@ TalkMate is an **AI-powered chatbot** designed to provide intelligent, conversat
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/talkmate-ai-chatbot.git
+    git clone https://github.com/Milinda55/TalkMate-Ai-chatBot.git
     ```
 2. Navigate to the project folder:
     ```bash
-    cd talkmate-ai-chatbot
+    cd TalkMate-Ai-chatBot
     ```
 3. Open `index.html` in your browser to view the project.
 
