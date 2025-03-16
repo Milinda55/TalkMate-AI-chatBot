@@ -24,6 +24,7 @@ TalkMate is an **AI-powered chatbot** designed to provide intelligent, conversat
 1. Clone the repository:
     ```bash
     git clone https://github.com/Milinda55/TalkMate-Ai-chatBot.git
+    git clone https://github.com/milinda55/talkmate-ai-chatbot.git
     ```
 2. Navigate to the project folder:
     ```bash
