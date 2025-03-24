@@ -20,4 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Email/Password Login
+document.querySelector("form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log("Email Sign-In Success:", user);
+        storeUserData(user); // Store user in Firebase Database
+        window.location.href = "index.html"; // Redirect after login
+    } catch (error) {
+        console.error("Login Error:", error.message);
+    }
+});
+
 
