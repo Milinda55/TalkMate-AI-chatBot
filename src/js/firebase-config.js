@@ -8,7 +8,7 @@ import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.3.1
 const firebaseConfig = {
     apiKey: "AIzaSyC-vYA_lbNB3B0K91ZFATf6F53ur23WmiY",
     authDomain: "ai-bot-authentication.firebaseapp.com",
-    databaseURL: "https://ai-bot-authentication.firebaseio.com", // Add database URL here
+    databaseURL: "https://ai-bot-authentication-default-rtdb.asia-southeast1.firebasedatabase.app/",
     projectId: "ai-bot-authentication",
     storageBucket: "ai-bot-authentication.appspot.com",
     messagingSenderId: "832556367958",
