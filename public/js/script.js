@@ -1,9 +1,19 @@
 // Determine the base URL based on environment
-const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const API_BASE_URL = isLocalDev
-    ? 'http://localhost:3000/api/chatbot'  // For local development
-    : "https://ai-chat-bot-project-4yhaj2qbq-milindas-projects-a6b73602.vercel.app/api/chatbot";                      // For production
+// const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// const API_BASE_URL = isLocalDev
+//     ? 'http://localhost:3000/api/chatbot'  // For local development
+//     : "https://ai-chat-bot-project-4yhaj2qbq-milindas-projects-a6b73602.vercel.app/api/chatbot";                      // For production
 // const API_URL = "/api/chatbot";
+
+
+function getApiUrl() {
+    // Use full URL if we're in development
+    if (window.location.hostname === 'localhost') {
+        return 'http://localhost:3000/api/chatbot';
+    }
+    // For production, use current domain
+    return '/api/chatbot';
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("user-input").addEventListener("keypress", function (event) {
@@ -50,10 +60,10 @@ async function sendMessage() {
 }
 
 async function getAIResponse(userMessage) {
-    try {
-        const API_URL =  "https://ai-chat-bot-project-4yhaj2qbq-milindas-projects-a6b73602.vercel.app/api/chatbot";
-        console.log('Calling:', API_URL);
+    const API_URL = getApiUrl();
+    console.log("Calling API at:", API_URL);
 
+    try {
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
@@ -62,20 +72,22 @@ async function getAIResponse(userMessage) {
             body: JSON.stringify({ userMessage })
         });
 
-        console.log("API response status:", response.status);
-
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error("API Error Response:", errorText);
-            throw new Error(`API request failed with status ${response.status}`);
+            const error = await response.text();
+            console.error("API Error:", error);
+            throw new Error(`API request failed: ${error}`);
         }
 
         const data = await response.json();
-        console.log("API Success Response:", data);
+        console.log("API Response:", data);
 
-        return data.generated_text || data.message || "I didn't understand that.";
+        if (!data.generated_text) {
+            throw new Error("No generated text in response");
+        }
+
+        return data.generated_text;
     } catch (error) {
-        console.error("Full API Error:", error);
+        console.error("Full Error Details:", error);
         throw error;
     }
 }
