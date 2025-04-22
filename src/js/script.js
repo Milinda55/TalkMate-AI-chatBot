@@ -1,9 +1,7 @@
-// import './firebase-config.js';
-
-// import firebase from "firebase/compat";
+// Define the API URL here
+const API_URL = "https://ai-chat-bot-project-ip5n1a1oz-milindas-projects-a6b73602.vercel.app/api/chatbot";
 
 document.addEventListener("DOMContentLoaded", function () {
-
     document.getElementById("user-input").addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
             sendMessage();
@@ -23,33 +21,24 @@ async function sendMessage() {
 }
 
 async function getAIResponse(userMessage) {
-
     try {
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${API_KEY}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ inputs: userMessage })
+            body: JSON.stringify({ userMessage })
         });
 
         const data = await response.json();
         console.log("API Response:", data);
-
-        if (Array.isArray(data) && data.length > 0) {
-            const generatedText = data[0].generated_text;
-            if (generatedText) {
-                return generatedText;
-            }
-        }
 
         if (data.error) {
             console.error("API Error:", data.error);
             return "Sorry, I couldn't generate a response.";
         }
 
-        return "Sorry, I couldn't generate a response.";
+        return data.generated_text || "Sorry, I couldn't generate a response.";
     } catch (error) {
         console.error("Error fetching AI response:", error);
         return "Oops! Something went wrong. Please try again.";
@@ -77,12 +66,3 @@ function appendMessage(role, message) {
     chatBox.appendChild(messageContainer);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
-
-// Redirect to login if not authenticated
-firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-        window.location.href = "index.html"; // Redirect to login if not signed in
-    }
-});
-
-

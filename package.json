@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Milinda55/TalkMate-AI-chatBot#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "firebase": "^11.3.1"
   }
 }
