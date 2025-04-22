@@ -2,7 +2,7 @@
 const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_BASE_URL = isLocalDev
     ? 'http://localhost:3000/api/chatbot'  // For local development
-    : "/api/chatbot";                      // For production
+    : "https://ai-chat-bot-project-4yhaj2qbq-milindas-projects-a6b73602.vercel.app/api/chatbot";                      // For production
 // const API_URL = "/api/chatbot";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -51,7 +51,7 @@ async function sendMessage() {
 
 async function getAIResponse(userMessage) {
     try {
-        const API_URL = `${window.location.origin}/api/chatbot`;
+        const API_URL =  "https://ai-chat-bot-project-4yhaj2qbq-milindas-projects-a6b73602.vercel.app/api/chatbot";
         console.log('Calling:', API_URL);
 
         const response = await fetch(API_URL, {
