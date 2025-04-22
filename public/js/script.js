@@ -60,7 +60,7 @@ async function sendMessage() {
 }
 
 async function getAIResponse(userMessage) {
-    const API_URL = getApiUrl();
+    const API_URL = '/api/chatbot';
     console.log("Calling API at:", API_URL);
 
     try {
@@ -72,22 +72,28 @@ async function getAIResponse(userMessage) {
             body: JSON.stringify({ userMessage })
         });
 
+        console.log("API status:", response.status);
+
         if (!response.ok) {
             const error = await response.text();
-            console.error("API Error:", error);
+            console.error("API Error Response:", error);
             throw new Error(`API request failed: ${error}`);
         }
 
         const data = await response.json();
-        console.log("API Response:", data);
+        console.log("API Response Data:", data);
 
         if (!data.generated_text) {
-            throw new Error("No generated text in response");
+            console.warn("No generated_text in response:", data);
+            throw new Error("Empty response from AI");
         }
 
         return data.generated_text;
     } catch (error) {
-        console.error("Full Error Details:", error);
+        console.error("Full Error Details:", {
+            error: error.message,
+            stack: error.stack
+        });
         throw error;
     }
 }
