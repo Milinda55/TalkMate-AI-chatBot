@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TalkMate AI ChatBot</title>
     <link rel="stylesheet" href="./styles/styles.css">
-    <script defer src="./js/script.js"></script>
 </head>
 <body>
 <h1 id="header-text">TalkMate AI ChatBot</h1>
@@ -18,10 +17,12 @@
         </div>
     </div>
 
-    <input class="input-container" type="text" id="user-input" placeholder="Type a message...">
-    <button id="send-btn" class="input-container">Send</button>
+    <div class="input-area">
+        <input class="input-container" type="text" id="user-input" placeholder="Type a message...">
+        <button id="send-btn" class="input-container">Send</button>
+    </div>
 </div>
 
-<script src="./js/firebase-config.js"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>
