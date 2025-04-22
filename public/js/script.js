@@ -26,7 +26,7 @@ async function sendMessage() {
         const loadingDiv = document.createElement("div");
         loadingDiv.className = "message-container bot-message-container";
         loadingDiv.innerHTML = `
-            <img src="./img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+            <img src="../img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
             <p class="bot-message">Thinking...</p>
         `;
         document.getElementById("chat-box").appendChild(loadingDiv);

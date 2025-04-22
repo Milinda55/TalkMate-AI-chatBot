@@ -2,7 +2,7 @@
   "name": "ai-chat-bot-project",
   "version": "1.0.0",
   "description": "## Overview",
-  "main": "src/js/script.js",
+  "main": "public/js/script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

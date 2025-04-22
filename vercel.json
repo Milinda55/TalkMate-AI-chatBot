@@ -6,7 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "*.html",
+      "src": "public/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -17,10 +17,11 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/$1",
-      "headers": {
-        "Access-Control-Allow-Origin": "*"
-      }
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/public/$1"
     }
   ]
 }
