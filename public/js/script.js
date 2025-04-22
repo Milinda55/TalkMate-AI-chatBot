@@ -3,7 +3,7 @@ const isLocalDev = window.location.hostname === 'localhost' || window.location.h
 const API_BASE_URL = isLocalDev
     ? 'http://localhost:3000/api/chatbot'  // For local development
     : "/api/chatbot";                      // For production
-const API_URL = "/api/chatbot";
+// const API_URL = "/api/chatbot";
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("user-input").addEventListener("keypress", function (event) {
@@ -51,7 +51,8 @@ async function sendMessage() {
 
 async function getAIResponse(userMessage) {
     try {
-        console.log("Sending to API:", API_URL, "Message:", userMessage);
+        const API_URL = `${window.location.origin}/api/chatbot`;
+        console.log('Calling:', API_URL);
 
         const response = await fetch(API_URL, {
             method: "POST",
