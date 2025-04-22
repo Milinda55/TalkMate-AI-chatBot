@@ -13,12 +13,11 @@
   "routes": [
     {
       "src": "/api/chatbot",
-      "dest": "/api/chatbot",
-      "methods": ["GET", "POST", "OPTIONS"]
+      "dest": "/api/chatbot"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/$1"
+      "dest": "/$1"
     }
   ]
 }

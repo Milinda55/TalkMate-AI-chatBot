@@ -2,7 +2,8 @@
 const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_BASE_URL = isLocalDev
     ? 'http://localhost:3000/api/chatbot'  // For local development
-    : 'https://ai-chat-bot-project-jzly2mj9a-milindas-projects-a6b73602.vercel.app/api/chatbot';                      // For production
+    : "/api/chatbot";                      // For production
+const API_URL = "/api/chatbot";
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("user-input").addEventListener("keypress", function (event) {
@@ -50,8 +51,6 @@ async function sendMessage() {
 
 async function getAIResponse(userMessage) {
     try {
-        // Replace any existing API_URL definition with this exact version:
-        const API_URL = "https://ai-chat-bot-project-jzly2mj9a-milindas-projects-a6b73602.vercel.app/api/chatbot";
         console.log("Sending to API:", API_URL, "Message:", userMessage);
 
         const response = await fetch(API_URL, {
