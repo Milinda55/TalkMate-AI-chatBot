@@ -2,7 +2,7 @@
 const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_BASE_URL = isLocalDev
     ? 'http://localhost:3000/api/chatbot'  // For local development
-    : '/api/chatbot';                      // For production
+    : 'https://ai-chat-bot-project-jzly2mj9a-milindas-projects-a6b73602.vercel.app/api/chatbot';                      // For production
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("user-input").addEventListener("keypress", function (event) {
@@ -26,8 +26,8 @@ async function sendMessage() {
         const loadingDiv = document.createElement("div");
         loadingDiv.className = "message-container bot-message-container";
         loadingDiv.innerHTML = `
-            <img src="../img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
-            <p class="bot-message">Thinking...</p>
+            <img src="/img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+<!--            <p class="bot-message">Thinking...</p>-->
         `;
         document.getElementById("chat-box").appendChild(loadingDiv);
 
@@ -38,15 +38,23 @@ async function sendMessage() {
 
         appendMessage("bot", botReply);
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Detailed Error:", error);
+        // Remove loading indicator if it exists
+        const loadingIndicators = document.querySelectorAll(".bot-message-container");
+        if (loadingIndicators.length > 0) {
+            loadingIndicators[loadingIndicators.length - 1].remove();
+        }
         appendMessage("bot", "Sorry, I'm having trouble connecting to the AI. Please try again later.");
     }
 }
 
 async function getAIResponse(userMessage) {
     try {
-        console.log("Calling API endpoint:", API_BASE_URL);
-        const response = await fetch(API_BASE_URL, {
+        // Replace any existing API_URL definition with this exact version:
+        const API_URL = "https://ai-chat-bot-project-jzly2mj9a-milindas-projects-a6b73602.vercel.app/api/chatbot";
+        console.log("Sending to API:", API_URL, "Message:", userMessage);
+
+        const response = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -54,21 +62,20 @@ async function getAIResponse(userMessage) {
             body: JSON.stringify({ userMessage })
         });
 
+        console.log("API response status:", response.status);
+
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error("API Error Response:", errorText);
             throw new Error(`API request failed with status ${response.status}`);
         }
 
         const data = await response.json();
-        console.log("API response:", data);
+        console.log("API Success Response:", data);
 
-        if (data.error) {
-            console.error("API Error:", data.error);
-            return "Sorry, I couldn't generate a response.";
-        }
-
-        return data.generated_text || "Sorry, I couldn't understand that.";
+        return data.generated_text || data.message || "I didn't understand that.";
     } catch (error) {
-        console.error("Error fetching AI response:", error);
+        console.error("Full API Error:", error);
         throw error;
     }
 }

@@ -17,8 +17,8 @@ export default async function handler(req, res) {
     try {
         const { userMessage } = req.body;
 
-        if (!userMessage || typeof userMessage !== 'string') {
-            return res.status(400).json({ error: 'Invalid input: userMessage is required' });
+        if (!userMessage) {
+            return res.status(400).json({ error: 'Message is required' });
         }
 
         const API_URL = 'https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill';
@@ -38,24 +38,27 @@ export default async function handler(req, res) {
             body: JSON.stringify({ inputs: userMessage })
         });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('HuggingFace API error:', errorData);
-            return res.status(response.status).json({
-                error: 'AI service error',
-                details: errorData.error || errorData
-            });
-        }
+        // if (!response.ok) {
+        //     const errorData = await response.json();
+        //     console.error('HuggingFace API error:', errorData);
+        //     return res.status(response.status).json({
+        //         error: 'AI service error',
+        //         details: errorData.error || errorData
+        //     });
+        // }
 
         const data = await response.json();
-
-        if (!data || !Array.isArray(data) || data.length === 0 || !data[0].generated_text) {
-            return res.status(500).json({ error: 'Unexpected response format from AI service' });
-        }
-
         return res.status(200).json({
-            generated_text: data[0].generated_text
+            generated_text: data[0]?.generated_text || "No response"
         });
+
+            // if (!data || !Array.isArray(data) || data.length === 0 || !data[0].generated_text) {
+        //     return res.status(500).json({ error: 'Unexpected response format from AI service' });
+        // }
+        //
+        // return res.status(200).json({
+        //     generated_text: data[0].generated_text
+        // });
 
     } catch (error) {
         console.error('Server error:', error);
