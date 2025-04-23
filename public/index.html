@@ -5,24 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TalkMate AI ChatBot</title>
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<h1 id="header-text">TalkMate AI ChatBot</h1>
 
-<div class="chat-container">
-    <div class="chat-box" id="chat-box">
-        <div class="message-container bot-message-container">
-            <img src="./img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
-            <p class="bot-message">Hello! How can I help you?</p>
+    <div class="app-container">
+        <div class="sidebar">
+            <button class="new-chat-btn">
+                <i class="fas fa-plus"></i> New chat
+            </button>
+            <div class="chat-history">
+                <div class="chat-title active">Today</div>
+                <div class="chat-title">Previous Chat 1</div>
+                <div class="chat-title">Previous Chat 2</div>
+            </div>
+            <div class="user-profile">
+                <img src="./img/milley.png" alt="User" class="profile-pic">
+                <span>User</span>
+            </div>
         </div>
     </div>
 
-    <div class="input-area">
-        <input class="input-container" type="text" id="user-input" placeholder="Type a message...">
-        <button id="send-btn" class="input-container">Send</button>
-    </div>
-</div>
+    <h1 id="header-text">TalkMate AI ChatBot</h1>
 
-<script src="./js/script.js"></script>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="message-container bot-message-container">
+                <img src="./img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+                <p class="bot-message">Hello! How can I help you?</p>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input class="input-container" type="text" id="user-input" placeholder="Type a message...">
+            <button id="send-btn" class="input-container">Send</button>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
 </body>
 </html>
