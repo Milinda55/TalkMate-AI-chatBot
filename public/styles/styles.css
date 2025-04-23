@@ -61,11 +61,11 @@ body {
 
     color: white;
     /*top: 40px;*/
-    margin: 20px 5px 10px 5px; /* Increased margin for spacing */
+    margin: 20px 5px 10px 5px;
     padding: 8px 12px;
     border-radius: 10px;
     /*margin: 5px;*/
-    text-align: right;
+    text-align: left;
     float: right;
     clear: both;
     max-width: 75%;
@@ -181,4 +181,31 @@ button {
         background: #008C76;
     }
 }
+
+.loading-dots .dot {
+    animation: blink 1.4s infinite both;
+    opacity: 0;
+}
+
+.loading-dots .dot:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots .dot:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.loading-dots .dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes blink {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+
 

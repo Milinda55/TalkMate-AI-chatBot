@@ -90,9 +90,10 @@ function showLoadingIndicator(id) {
     loadingDiv.id = id;
     loadingDiv.className = "message-container bot-message-container";
     loadingDiv.innerHTML = `
-        <img src="/img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
-        <p class="bot-message">Thinking...</p>
-    `;
+    <img src="/img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+    <p class="bot-message loading-dots">Thinking<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></p>
+`;
+
     chatBox.appendChild(loadingDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
