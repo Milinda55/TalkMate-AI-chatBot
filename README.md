@@ -1,48 +1,140 @@
 # TalkMate AI Chatbot
 
+![Chatbot Demo](./public/img/aibot.gif)
+
 ## Overview
 
-TalkMate is an **AI-powered chatbot** designed to provide intelligent, conversational responses to users. Built using **HTML**, **CSS**, and **JavaScript**, this project aims to offer a seamless and responsive chat interface that can handle real-time conversations. With future integration potential for advanced NLP and backend services, TalkMate will provide a sophisticated user experience with a touch of modern AI.
+TalkMate is an **AI-powered chatbot** that delivers intelligent, contextual conversations through a modern web interface. Built with **HTML5**, **CSS3**, and **JavaScript**, and deployed via **Vercel**, this project leverages Hugging Face's transformer models for advanced natural language understanding.
 
-## Features
+## Key Features
 
-- **AI-Powered Conversations**: The chatbot uses basic natural language processing (NLP) techniques to understand and respond to user inputs.
-- **Responsive Interface**: Optimized for use on both desktop and mobile devices.
-- **Customizable UI**: Easily modify the look and feel to suit specific needs.
-- **Live Chat Support Integration**: Ability to connect with backend services for enhanced real-time support.
-- **User-Friendly**: A clean, intuitive interface that makes interactions smooth and enjoyable.
+### Core Functionality
+- **Hugging Face AI Integration**: Powered by `facebook/blenderbot-400M-distill` for human-like conversations
+- **Vercel Serverless Deployment**: Secure API endpoints with automatic scaling
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
 
-## Technologies Used
+### Enhanced User Experience
+- **Dark/Light Mode Toggle**: Eye-friendly theme switching with system preference detection
+- **Chat History**: Persistent conversation sessions with quick access to previous chats
+- **Modern UI**: ChatGPT-inspired interface with message bubbles and typing indicators
 
-- **HTML**: Structure and layout of the chatbot.
-- **CSS**: Styling for an attractive and responsive interface.
-- **JavaScript**: Frontend logic for chat interactions, user input handling, and AI response generation.
-- **Optional Backend**: Future integration with backend technologies like Node.js or Python for advanced AI features.
+### Technical Highlights
+- **Environment Variable Security**: Protected API keys using Vercel's configuration
+- **Optimized API Calls**: Automatic retries with exponential backoff for Hugging Face
+- **Modular Architecture**: Clean separation of frontend and backend components
 
-## Installation
+## Future Roadmap
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/Milinda55/TalkMate-Ai-chatBot.git
-    ```
-2. Navigate to the project folder:
-    ```bash
-    cd TalkMate-Ai-chatBot
-    ```
-3. Open `index.html` in your browser to view the project.
+### Near-Term Enhancements
+- [ ] **User Authentication**: JWT-based login system
+- [ ] **Conversation Memory**: Context-aware responses using chat history
+- [ ] **Multi-model Support**: Fallback to alternative AI models when primary is unavailable
 
-## Usage
+### Long-Term Vision
+- [ ] **File Upload Processing**: PDF/Word document analysis
+- [ ] **Voice Interaction**: Speech-to-text and text-to-speech integration
+- [ ] **Admin Dashboard**: Conversation analytics and model performance metrics
 
-1. Open the TalkMate chatbot interface in your browser.
-2. Type a message into the chat box to begin interacting with the bot.
-3. TalkMate will process the input and provide a conversational response.
-4. Optionally, you can enhance the bot's capabilities by connecting it to a backend service for more advanced functionalities.
+## Technology Stack
+
+### Frontend
+- **HTML5** - Semantic page structure
+- **CSS3** - Flexbox/Grid layouts with CSS variables for theming
+- **JavaScript ES6+** - Async/await for API interactions
+
+### Backend
+- **Vercel Serverless Functions** - Node.js API endpoints
+- **Hugging Face Inference API** - Transformer model hosting
+
+### DevOps
+- **Vercel Platform** - CI/CD pipeline and hosting
+- **Environment Variables** - Secure credential management
+
+## Installation & Deployment
+
+### Local Development
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Milinda55/TalkMate-Ai-chatBot.git
+   cd TalkMate-Ai-chatBot
+   ```
+2. **Create .env.local file**:
+
+   ```env
+   HUGGINGFACE_API_KEY=your_test_key_here
+   ```
+3. **Start dev server**:
+
+   ```bash
+   vercel dev
+   ```
+### Production Deployment
+
+1. **Set up Vercel environment variables**:
+
+   ```bash
+   vercel env add HUGGINGFACE_API_KEY production
+   ```
+2. **Deploy**:
+
+   ```bash
+   vercel --prod
+   ```
+
+## Usage Guide
+
+### Starting a Chat
+- **New Conversation**: Click the "New Chat" button to start fresh
+- **Chat History**: Access previous conversations from the left sidebar
+- **Persistent Sessions**: Chats are automatically saved during your session
+
+### Theme Customization
+- **Toggle Button**: Click the moon/sun icon in the top-right corner
+- **System Preference**: Automatically detects your OS color scheme
+- **Session Memory**: Remembers your last selected theme
+
+### Advanced Features
+| Command          | Description                          |
+|------------------|--------------------------------------|
+| `/help`          | Show available commands              |
+| `/clear`         | Reset current conversation           |
+| `/theme [dark/light]` | Force theme change           |
+
+**Message Actions**:
+- Long-press messages to edit or regenerate
+- Click profile icons to view participant info
+
+## Troubleshooting
+
+| Error | Solution | Additional Info |
+|-------|----------|-----------------|
+| 503 Service Unavailable | Wait 30 seconds and retry | Model may be loading |
+| 429 Rate Limit Exceeded | [Upgrade account](https://huggingface.co/pricing) or wait 1 hour | Free tier has 500 requests/day |
+| 404 API Not Found | Check Vercel deployment logs | Ensure `api/chatbot.js` exists |
 
 ## License
 
-This project is licensed under the MIT License - see the [MIT LICENSE](LICENSE.txt) file for details.
+[MIT License](LICENSE.txt) - Copyright © 2025 [Talkmate Ai Chatbot]
+
+**Permissions**:
+- Commercial use
+- Modification
+- Private use
+
+**Limitations**:
+- Liability
+- Warranty
 
 ## Acknowledgments
 
-- Inspiration from open-source AI chatbot frameworks.
+We extend our gratitude to:
 
+- [Hugging Face](https://huggingface.co) for their cutting-edge NLP models
+- [Vercel](https://vercel.com) for their seamless deployment platform
+- [Font Awesome](https://fontawesome.com) for the beautiful icons
+- The open-source community for invaluable contributions
+
+---
+
+**Pro Tip**: For faster responses during peak times, try using the `/retry` command when encountering errors.
