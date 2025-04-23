@@ -46,7 +46,6 @@ body {
     height: 100vh;
 }
 
-/* Sidebar styles */
 .sidebar {
     width: 260px;
     background-color: var(--sidebar-bg);
@@ -118,7 +117,6 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Main content styles */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -162,7 +160,6 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Chat container styles */
 .chat-container {
     flex-grow: 1;
     display: flex;
@@ -230,7 +227,6 @@ body {
     border-bottom-right-radius: 4px;
 }
 
-/* Input area styles */
 .input-area {
     display: flex;
     gap: 10px;
@@ -271,7 +267,6 @@ body {
     opacity: 0.9;
 }
 
-/* Loading indicator */
 .loading-dots {
     display: flex;
     gap: 4px;
@@ -306,7 +301,6 @@ body {
     40% { opacity: 1; }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .sidebar {
         width: 200px;
