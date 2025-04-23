@@ -334,3 +334,45 @@ body {
         max-width: 95%;
     }
 }
+
+.chat-history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+[data-theme="dark"] .chat-history::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+}
+
+.chat-title {
+    position: relative;
+    padding-left: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-title::before {
+    content: "💬";
+    position: absolute;
+    left: 10px;
+}
+
+.chat-title.active::before {
+    content: "🗨️";
+}
+
+.message-time {
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-top: 2px;
+}
