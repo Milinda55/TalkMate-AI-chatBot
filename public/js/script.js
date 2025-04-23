@@ -25,6 +25,25 @@ darkModeToggle.addEventListener('click', () => {
         : '<i class="fas fa-moon"></i>';
 });
 
+document.querySelector('.new-chat-btn').addEventListener('click', () => {
+    document.getElementById('chat-box').innerHTML = `
+        <div class="message-container bot-message-container">
+            <img src="../img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+            <div class="message-content">
+                <p class="bot-message">Hello! How can I help you today?</p>
+            </div>
+        </div>
+    `;
+});
+
+document.querySelectorAll('.chat-title').forEach(title => {
+    title.addEventListener('click', function() {
+        document.querySelectorAll('.chat-title').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+
 
 async function getAIResponse(userMessage) {
     const API_URL = '/api/chatbot';
