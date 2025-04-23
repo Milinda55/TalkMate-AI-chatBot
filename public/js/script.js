@@ -25,6 +25,68 @@ darkModeToggle.addEventListener('click', () => {
         : '<i class="fas fa-moon"></i>';
 });
 
+const chatHistories = {
+    "Previous Chat 1": [
+        {
+            role: "user",
+            message: "What's the weather like today?"
+        },
+        {
+            role: "bot",
+            message: "I don't have real-time weather data, but you can check reliable weather services like Weather.com or your local weather app for the most accurate forecast!"
+        },
+        {
+            role: "user",
+            message: "Can you recommend a good Italian restaurant?"
+        },
+        {
+            role: "bot",
+            message: "While I can't browse current listings, some popular Italian restaurant chains include Olive Garden, Carrabba's, and local trattorias. Check Yelp or Google Maps for reviews near you!"
+        }
+    ],
+    "Previous Chat 2": [
+        {
+            role: "user",
+            message: "Explain quantum computing in simple terms"
+        },
+        {
+            role: "bot",
+            message: "Quantum computing uses quantum bits (qubits) that can exist in multiple states at once (superposition), allowing them to perform many calculations simultaneously. It's fundamentally different from classical computers that use binary bits (0s and 1s)."
+        },
+        {
+            role: "user",
+            message: "How is this different from regular computers?"
+        },
+        {
+            role: "bot",
+            message: "Classical computers process information sequentially using bits that are either 0 or 1. Quantum computers can process complex problems much faster by leveraging quantum mechanics principles like superposition and entanglement."
+        }
+    ]
+};
+
+document.querySelectorAll('.chat-title').forEach(title => {
+    title.addEventListener('click', function() {
+        document.querySelectorAll('.chat-title').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        const chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML = '';
+
+        const chatTitle = this.textContent;
+        if (chatHistories[chatTitle]) {
+            chatHistories[chatTitle].forEach(msg => {
+                appendMessage(msg.role, msg.message);
+            });
+        } else {
+            appendMessage("bot", "Hello! How can I help you today?");
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
+});
+
+document.querySelector('.chat-title.active').click();
+
 document.querySelector('.new-chat-btn').addEventListener('click', () => {
     document.getElementById('chat-box').innerHTML = `
         <div class="message-container bot-message-container">
