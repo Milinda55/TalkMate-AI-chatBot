@@ -1,5 +1,31 @@
 const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
 
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const htmlElement = document.documentElement;
+
+const savedTheme = localStorage.getItem('theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+htmlElement.setAttribute('data-theme', savedTheme);
+
+if (savedTheme === 'dark') {
+    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+} else {
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+}
+
+darkModeToggle.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    darkModeToggle.innerHTML = newTheme === 'dark'
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
+});
+
+
 async function getAIResponse(userMessage) {
     const API_URL = '/api/chatbot';
     console.log(`[DEBUG] Calling ${API_URL} with message:`, userMessage);
@@ -91,7 +117,7 @@ function showLoadingIndicator(id) {
     loadingDiv.className = "message-container bot-message-container";
     loadingDiv.innerHTML = `
     <img src="/img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
-    <p class="bot-message loading-dots">Thinking<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></p>
+    <p class="bot-message loading-dots">Thinking<span class="dot"></span><span class="dot"></span><span class="dot"></span></p>
 `;
 
     chatBox.appendChild(loadingDiv);
