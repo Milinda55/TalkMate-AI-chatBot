@@ -115,9 +115,16 @@ async function getAIResponse(userMessage) {
         const response = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userMessage }),
+            body: JSON.stringify({  userMessage }),
             signal: AbortSignal.timeout(15000) // Increased timeout
         });
+
+        // if (response.status === 503 && retries > 0) {
+        //     const delay = 1000 * (4 - retries); // Exponential backoff (1s, 2s, 3s)
+        //     console.log(`Model loading - retrying in ${delay}ms...`);
+        //     await new Promise(resolve => setTimeout(resolve, delay));
+        //     return getAIResponse(userMessage, retries - 1);
+        // }
 
         console.log("[DEBUG] Response status:", response.status);
 

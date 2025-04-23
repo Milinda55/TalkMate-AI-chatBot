@@ -107,6 +107,7 @@ body {
     margin-top: auto;
     border-radius: 6px;
     cursor: pointer;
+    border-top: 1px solid var(--border-color);
 }
 
 .user-profile:hover {
