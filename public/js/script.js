@@ -1,100 +1,66 @@
-// Determine the base URL based on environment
-// const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-// const API_BASE_URL = isLocalDev
-//     ? 'http://localhost:3000/api/chatbot'  // For local development
-//     : "https://ai-chat-bot-project-4yhaj2qbq-milindas-projects-a6b73602.vercel.app/api/chatbot";                      // For production
-// const API_URL = "/api/chatbot";
+const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
 
+async function getAIResponse(userMessage) {
+    const API_URL = '/api/chatbot';
+    console.log(`[DEBUG] Calling ${API_URL} with message:`, userMessage);
 
-function getApiUrl() {
-    // Use full URL if we're in development
-    if (window.location.hostname === 'localhost') {
-        return 'http://localhost:3000/api/chatbot';
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userMessage }),
+            signal: AbortSignal.timeout(15000) // Increased timeout
+        });
+
+        console.log("[DEBUG] Response status:", response.status);
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            const errorText = await response.text().catch(() => "Unknown error");
+            console.error("API Error:", response.status, errorData || errorText);
+            throw new Error(`API request failed: ${errorData?.error || errorText}`);
+        }
+
+        const data = await response.json();
+        return data.generated_text || "No response from AI";
+
+    } catch (error) {
+        console.error("Detailed Error:", error);
+        throw error;
     }
-    // For production, use current domain
-    return '/api/chatbot';
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("user-input").addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
+document.addEventListener("DOMContentLoaded", function() {
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+    const chatBox = document.getElementById("chat-box");
+
+    userInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") sendMessage();
     });
-    document.getElementById("send-btn").addEventListener("click", sendMessage);
+    sendBtn.addEventListener("click", sendMessage);
 });
 
 async function sendMessage() {
     const userInput = document.getElementById("user-input");
     const message = userInput.value.trim();
+
     if (!message) return;
 
     appendMessage("user", message);
     userInput.value = "";
 
-    try {
-        // Show loading indicator
-        const loadingDiv = document.createElement("div");
-        loadingDiv.className = "message-container bot-message-container";
-        loadingDiv.innerHTML = `
-            <img src="/img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
-<!--            <p class="bot-message">Thinking...</p>-->
-        `;
-        document.getElementById("chat-box").appendChild(loadingDiv);
+    const loadingId = "loading-" + Date.now();
+    showLoadingIndicator(loadingId);
 
+    try {
         const botReply = await getAIResponse(message);
-
-        // Remove loading indicator
-        document.getElementById("chat-box").removeChild(loadingDiv);
-
+        removeLoadingIndicator(loadingId);
         appendMessage("bot", botReply);
+
     } catch (error) {
-        console.error("Detailed Error:", error);
-        // Remove loading indicator if it exists
-        const loadingIndicators = document.querySelectorAll(".bot-message-container");
-        if (loadingIndicators.length > 0) {
-            loadingIndicators[loadingIndicators.length - 1].remove();
-        }
-        appendMessage("bot", "Sorry, I'm having trouble connecting to the AI. Please try again later.");
-    }
-}
-
-async function getAIResponse(userMessage) {
-    const API_URL = '/api/chatbot';
-    console.log("Calling API at:", API_URL);
-
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ userMessage })
-        });
-
-        console.log("API status:", response.status);
-
-        if (!response.ok) {
-            const error = await response.text();
-            console.error("API Error Response:", error);
-            throw new Error(`API request failed: ${error}`);
-        }
-
-        const data = await response.json();
-        console.log("API Response Data:", data);
-
-        if (!data.generated_text) {
-            console.warn("No generated_text in response:", data);
-            throw new Error("Empty response from AI");
-        }
-
-        return data.generated_text;
-    } catch (error) {
-        console.error("Full Error Details:", {
-            error: error.message,
-            stack: error.stack
-        });
-        throw error;
+        removeLoadingIndicator(loadingId);
+        handleError(error);
     }
 }
 
@@ -106,7 +72,7 @@ function appendMessage(role, message) {
     const profilePic = document.createElement("img");
     profilePic.className = `profile-pic ${role}-pic`;
     profilePic.src = role === "user" ? "./img/milley.png" : "./img/bot-image.jpg";
-    profilePic.alt = role === "user" ? "User" : "Bot";
+    profilePic.alt = role === "user" ? "User" : "AI Bot";
 
     const messageDiv = document.createElement("p");
     messageDiv.className = `${role}-message`;
@@ -117,3 +83,52 @@ function appendMessage(role, message) {
     chatBox.appendChild(messageContainer);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+function showLoadingIndicator(id) {
+    const chatBox = document.getElementById("chat-box");
+    const loadingDiv = document.createElement("div");
+    loadingDiv.id = id;
+    loadingDiv.className = "message-container bot-message-container";
+    loadingDiv.innerHTML = `
+        <img src="/img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+        <p class="bot-message">Thinking...</p>
+    `;
+    chatBox.appendChild(loadingDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function removeLoadingIndicator(id) {
+    const loadingElement = document.getElementById(id);
+    if (loadingElement) {
+        loadingElement.remove();
+    }
+}
+
+function handleError(error) {
+    let errorMessage = "Sorry, I'm having trouble connecting to the AI. Please try again later.";
+
+    if (error.message.includes("Failed to fetch")) {
+        errorMessage = "Connection to server failed. Please check your internet connection.";
+    } else if (error.message.includes("404")) {
+        errorMessage = "The AI service is currently unavailable. Please try again later.";
+    } else if (error.message.includes("AI returned an empty response")) {
+        errorMessage = "The AI didn't respond. Maybe try rephrasing your question?";
+    } else if (error.message) {
+        errorMessage = error.message;
+    }
+
+    console.error("Error details:", error);
+    appendMessage("bot", errorMessage);
+}
+
+window.debugAPI = async function(testMessage = "Hello") {
+    console.log("Testing API with message:", testMessage);
+    try {
+        const response = await getAIResponse(testMessage);
+        console.log("API Test Success:", response);
+        return response;
+    } catch (error) {
+        console.error("API Test Failed:", error);
+        throw error;
+    }
+};
