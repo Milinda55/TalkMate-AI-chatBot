@@ -21,24 +21,37 @@
             </div>
             <div class="user-profile">
                 <img src="./img/milley.png" alt="User" class="profile-pic">
-                <span>User</span>
-            </div>
-        </div>
-    </div>
-
-    <h1 id="header-text">TalkMate AI ChatBot</h1>
-
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <div class="message-container bot-message-container">
-                <img src="./img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
-                <p class="bot-message">Hello! How can I help you?</p>
+                <span>My Profile</span>
             </div>
         </div>
 
-        <div class="input-area">
-            <input class="input-container" type="text" id="user-input" placeholder="Type a message...">
-            <button id="send-btn" class="input-container">Send</button>
+        <div class="main-content">
+            <div class="header">
+                <h1>Hi, I'm TalkMate.</h1>
+                <div class="header-controls">
+                    <button id="dark-mode-toggle" class="icon-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-box" id="chat-box">
+                    <div class="message-container bot-message-container">
+                        <img src="./img/bot-image.jpg" alt="Bot" class="profile-pic bot-pic">
+                        <div class="message-content">
+                            <p class="bot-message">How can I help you today?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <input type="text" id="user-input" placeholder="Type a message...">
+                    <button id="send-btn" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
