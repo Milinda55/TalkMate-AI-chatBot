@@ -13,7 +13,9 @@ out/
 *.iws
 *.iml
 *.ipr
-echo .env
+
+# Local environment variables
+.env
 
 ### Eclipse ###
 .apt_generated
